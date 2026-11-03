@@ -1,0 +1,17 @@
+! SW1 (core switch): commands entered in Lab 1
+hostname SW1
+vlan 10
+ name Staff
+vlan 20
+ name Guest
+vlan 30
+ name Servers
+interface fastEthernet0/1
+ switchport mode trunk
+interface gigabitEthernet0/1
+ switchport mode trunk
+interface gigabitEthernet0/2
+ switchport mode trunk
+interface fastEthernet0/10
+ switchport mode access
+ switchport access vlan 30

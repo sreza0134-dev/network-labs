@@ -1,0 +1,13 @@
+! SW3 (guest switch): commands entered in Lab 1
+hostname SW3
+vlan 10
+ name Staff
+vlan 20
+ name Guest
+vlan 30
+ name Servers
+interface gigabitEthernet0/1
+ switchport mode trunk
+interface fastEthernet0/1
+ switchport mode access
+ switchport access vlan 20

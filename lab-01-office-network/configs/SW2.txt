@@ -1,0 +1,13 @@
+! SW2 (staff switch): commands entered in Lab 1
+hostname SW2
+vlan 10
+ name Staff
+vlan 20
+ name Guest
+vlan 30
+ name Servers
+interface gigabitEthernet0/1
+ switchport mode trunk
+interface range fastEthernet0/1 - 3
+ switchport mode access
+ switchport access vlan 10
