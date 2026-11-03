@@ -1,4 +1,4 @@
-# Lab 1: Office Network
+# Lab 1: Office Network with VLANs, Routing, DHCP, NAT and Access List
 
 I built a small office network in Cisco Packet Tracer, a free network simulator. It has three separate networks: Staff, Guest, and Servers. Guests can use the internet, but they cannot reach the staff devices or the server.
 
@@ -21,6 +21,43 @@ A VLAN is a way to split one switch into separate networks. Devices in different
 | 30 | Servers | 192.168.1.128/26 | 192.168.1.129 |
 
 The gateway is the router's address in each network. Devices send traffic there when they want to reach another network.
+
+## What I did with VLANs
+
+A VLAN splits one switch into separate networks. In this lab I made three VLANs and used them to keep Staff, Guests, and the server apart.
+
+**1. I made the same three VLANs on all three switches**
+
+| VLAN | Name |
+|---|---|
+| 10 | Staff |
+| 20 | Guest |
+| 30 | Servers |
+
+**2. I put each port in the right VLAN**
+
+| Switch | Port | Connected to | VLAN |
+|---|---|---|---|
+| SW2 | Fa0/1 | PC1 | 10 Staff |
+| SW2 | Fa0/2 | PC2 | 10 Staff |
+| SW2 | Fa0/3 | Printer1 | 10 Staff |
+| SW3 | Fa0/1 | Access point (guest Wi-Fi) | 20 Guest |
+| SW1 | Fa0/10 | Office server | 30 Servers |
+
+**3. I made trunk links**
+
+A trunk carries all the VLANs on one cable. I made three: SW1 to SW2, SW1 to SW3, and SW1 to the router.
+
+**4. I gave the router one virtual port for each VLAN**
+
+This is how the VLANs talk to each other. Each virtual port is the gateway for its VLAN.
+
+**5. I checked it with `show vlan brief` and `show interfaces trunk`**
+
+![SW1 VLANs](screenshots/02-sw1-vlans.png)
+![SW1 trunks](screenshots/03-sw1-trunks.png)
+![SW2 VLANs](screenshots/04-sw2-vlans.png)
+![SW3 VLANs](screenshots/05-sw3-vlans.png)
 
 ## What I did, step by step
 
