@@ -9,7 +9,7 @@ Hands-on network labs that I built to practice the skills from my CCNA. Most use
 | 1. Office network with **VLANs** | Three VLANs, routing between them, DHCP, NAT, and an access list that blocks guests | Packet Tracer | Done |
 | 2. Fix the broken network | Finding and fixing five network faults | Packet Tracer | Done |
 | 3. See the traffic | Looking at real DHCP, DNS, ARP, ping, and TCP packets | Wireshark | Done |
-| 4. Two offices joined by a **VPN** | Routing between two sites, then an encrypted **VPN** tunnel (IPsec) | Packet Tracer | Planned |
+| 4. Two offices joined by a **VPN** | Routing between two sites, then an encrypted **VPN** tunnel (IPsec) | Packet Tracer | Done |
 | 5. Switch security | Port security, SSH, and turning off unused ports | Packet Tracer | Planned |
 
 ## About

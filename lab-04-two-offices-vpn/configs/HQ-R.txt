@@ -1,0 +1,30 @@
+! HQ-R-Salim (Cisco 2811) - Berlin office
+hostname HQ-R-Salim
+!
+interface FastEthernet0/0
+ description LAN to HQ-SW
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+!
+interface FastEthernet0/1
+ description Internet link to ISP
+ ip address 203.0.113.1 255.255.255.252
+ no shutdown
+ crypto map VPN-MAP
+!
+ip route 0.0.0.0 0.0.0.0 203.0.113.2
+!
+! ---- VPN (IPsec site-to-site) ----
+crypto isakmp policy 10
+ encryption aes
+ hash sha
+ authentication pre-share
+ group 2
+ lifetime 86400
+crypto isakmp key <PRE-SHARED-KEY> address 198.51.100.2
+crypto ipsec transform-set VPN-SET esp-aes esp-sha-hmac
+access-list 110 permit ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
+crypto map VPN-MAP 10 ipsec-isakmp
+ set peer 198.51.100.2
+ set transform-set VPN-SET
+ match address 110
