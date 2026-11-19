@@ -1,0 +1,31 @@
+! SW-Salim (Cisco 2960) - small office switch
+hostname SW-Salim
+!
+enable secret <ENABLE-PASSWORD>
+username salim secret <USER-PASSWORD>
+!
+interface Vlan1
+ ip address 192.168.1.2 255.255.255.0
+ no shutdown
+!
+! ---- SSH ----
+ip domain-name lab.local
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+line vty 0 15
+ transport input ssh
+ login local
+!
+! ---- Port security on the used ports ----
+interface range FastEthernet0/1 - 2
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation shutdown
+!
+! ---- Unused ports are shut down ----
+interface range FastEthernet0/3 - 24
+ shutdown
+interface range GigabitEthernet0/1 - 2
+ shutdown
